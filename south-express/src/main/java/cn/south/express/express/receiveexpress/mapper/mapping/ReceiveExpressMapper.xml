@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.south.express.express.receiveexpress.mapper.ReceiveExpressMapper">
+    <select id="ReceiveExpressPage" resultType="cn.south.express.express.receiveexpress.param.ReceiveExpressParam">
+        select
+            r.id id,
+            r.express_number express_number,
+            r.express_people express_people,
+            r.express_status express_status,
+            r.express_tel express_tel,
+            r.express_type express_type,
+            r.receive_time receive_time,
+            t.consignee consignee,
+            t.consignee_number consignee_number,
+            t.remarks remarks,
+            t.take_time take_time
+        from tb_receive_express r left join tb_take_express_delivery t
+        on r.id = t.r_id
+            ${ew.customSqlSegment}
+    </select>
+</mapper>

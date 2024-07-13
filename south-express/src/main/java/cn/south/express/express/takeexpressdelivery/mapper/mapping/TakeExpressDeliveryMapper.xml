@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.south.express.express.takeexpressdelivery.mapper.TakeExpressDeliveryMapper">
+    <select id="TakeExpressDataSelect" resultType="cn.south.express.express.takeexpressdelivery.entity.TakeExpressDelivery">
+        select
+            t.id id,
+            t.consignee consignee,
+            t.consignee_number consignee_number,
+            t.remarks remarks,
+            t.take_time take_time,
+            t.r_id rId
+        from tb_receive_express r right join tb_take_express_delivery t
+                                            on r.id = t.r_id
+            ${ew.customSqlSegment}
+    </select>
+</mapper>
